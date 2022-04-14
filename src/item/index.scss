@@ -1,0 +1,43 @@
+.waterfall-item {
+    position: absolute;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 2%), 0 4px 8px rgb(0 0 0 / 2%);
+    transition: transform .15s ease-in-out, box-shadow .15s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 1px 3px rgb(0 0 0 / 2%), 0 16px 32px -4px rgb(0 0 0 / 17%);
+    }
+
+    .img-box {
+        position: relative;
+    }
+
+    .loading {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        color: #999;
+        font-size: 14px;
+        text-align: center;
+        opacity: 1;
+    }
+
+    .image {
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.25s ease-in-out;
+    }
+
+    .hidden-loading {
+        opacity: 0;
+    }
+
+    .image-visible {
+        opacity: 1;
+        transition: opacity 0.25s ease-in-out;
+    }
+}

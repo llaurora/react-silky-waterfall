@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "jsx": "react-jsx",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "noUnusedLocals": false,
+        "skipLibCheck": true,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["./src/*"],
+        },
+        "module": "ESNext",
+        "target": "ESNext",
+        "lib": ["dom", "ESNext"],
+    },
+}

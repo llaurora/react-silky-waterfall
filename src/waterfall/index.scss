@@ -1,0 +1,29 @@
+.container {
+    position: relative;
+    box-sizing: border-box;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .waterfall {
+        width: 100%;
+    }
+
+    .loading-more {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .loading-text {
+        margin-top: 12px;
+        color: rgb(0 0 0 / 65%);
+        font-size: 16px;
+    }
+}
