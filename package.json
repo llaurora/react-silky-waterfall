@@ -17,7 +17,8 @@
         "lint": "pnpm eslint && pnpm stylelint",
         "eslint:fix": "pnpm eslint -- --fix",
         "stylelint:fix": "pnpm stylelint -- --fix",
-        "lint:fix": "pnpm eslint:fix && pnpm stylelint:fix"
+        "lint:fix": "pnpm eslint:fix && pnpm stylelint:fix",
+        "prepare": "husky install"
     },
     "dependencies": {
         "@babel/runtime": "^7.17.7",
@@ -35,8 +36,8 @@
         "@babel/preset-env": "^7.15.8",
         "@babel/preset-react": "^7.14.5",
         "@babel/preset-typescript": "^7.15.0",
-        "@commitlint/cli": "^13.2.1",
-        "@commitlint/config-conventional": "^13.2.0",
+        "@commitlint/cli": "^17.1.2",
+        "@commitlint/config-conventional": "^17.1.0",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
         "@types/classnames": "^2.3.1",
         "@types/react": "^17.0.40",
@@ -63,8 +64,8 @@
         "express": "^4.17.3",
         "friendly-errors-webpack-plugin": "^1.7.0",
         "html-webpack-plugin": "^5.4.0",
-        "husky": "4.3.8",
-        "lint-staged": "^12.3.6",
+        "husky": "^8.0.1",
+        "lint-staged": "^13.0.3",
         "mini-css-extract-plugin": "^2.6.0",
         "mockjs": "^1.1.0",
         "node-notifier": "^10.0.0",
@@ -94,12 +95,6 @@
         "webpack-hot-middleware": "^2.25.1",
         "webpack-merge": "^5.8.0",
         "webpackbar": "^5.0.0-3"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
     },
     "engines": {
         "node": ">= 10.13.0"
