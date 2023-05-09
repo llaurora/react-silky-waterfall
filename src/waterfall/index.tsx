@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import ResizeObserver from "resize-observer-polyfill";
 import Item from "@/item";
-import { WaterfallProps, ContainerRectInfo, IDType } from "@/interface";
+import type { WaterfallProps, ContainerRectInfo, IDType } from "../interface";
 import { getImageCalcSize, throttle, debounce } from "./utils";
 import Collection from "./Collection";
 import loadingSrc from "./loading.gif";
@@ -18,6 +18,7 @@ const Waterfall = ({
     loadingClassName,
     extraSizeGetter,
     onImgClick,
+    extraHeight: propExtraHeight,
     interval = 500,
     rowHeight = 100,
     overscanRatio = 1,
@@ -55,11 +56,12 @@ const Waterfall = ({
     }, [columnGap, columns, containerHeight, containerWidth, overscanRatio]);
 
     const waterfallHeight = useMemo(() => {
-        if (dataSource.length === 0 || containerHeight === 0) {
+        if (dataSource.length === 0 || containerHeight === 0 || containerWidth === 0) {
             return 0;
         }
         let bottom = 0;
         const sliceDatasource = dataSource.slice(sliceStartIndexRef.current);
+        sliceStartIndexRef.current = dataSource.length;
         const { length } = sliceDatasource;
         for (let i = 0; i < length; i += 1) {
             const item = sliceDatasource[i];
@@ -67,7 +69,7 @@ const Waterfall = ({
             const [hitTop, hitIndex] = collectionRef.current.getCurrentLocation();
             const [imageWidth, imageHeight] = getImageCalcSize(imageOriginWidth, imageOriginHeight, columnWidth);
             const hitLeft = (hitIndex + 1 - 1) * (columnWidth + columnGap);
-            const extraHeight = extraSizeGetter?.(item, columnWidth) ?? 0;
+            const extraHeight = propExtraHeight ?? extraSizeGetter?.(item, columnWidth) ?? 0;
             const itemHeight = imageHeight + extraHeight + rowGap;
             collectionRef.current.updateCurrentLocation(hitIndex, hitTop + itemHeight);
             collectionRef.current.registerOverlapCell(id, { top: hitTop, height: itemHeight });
@@ -84,10 +86,10 @@ const Waterfall = ({
             }
         }
         return bottom;
-    }, [columnGap, columnWidth, containerHeight, dataSource, extraSizeGetter, rowGap]);
+    }, [columnGap, columnWidth, containerWidth, containerHeight, dataSource, extraSizeGetter, propExtraHeight, rowGap]);
 
     const metadataIds = useMemo(() => {
-        if (dataSource.length === 0 && containerHeight === 0) {
+        if (dataSource.length === 0 || containerHeight === 0 || containerWidth === 0) {
             return [];
         }
         const list = [];
@@ -103,7 +105,7 @@ const Waterfall = ({
             list.push(...ids);
         });
         return [...new Set(list)];
-    }, [containerHeight, overscanHeight, scrollTop, dataSource.length]);
+    }, [containerWidth, containerHeight, overscanHeight, scrollTop, dataSource.length]);
 
     const onLoadMoreCallback = useCallback(
         (entries) => {
@@ -188,16 +190,12 @@ const Waterfall = ({
     }, []);
 
     useEffect(() => {
-        sliceStartIndexRef.current = dataSource.length;
-    }, [dataSource]);
-
-    useEffect(() => {
         let loadMoreObserver;
         const target = loadingRef.current;
         if (showLoadingNode && containerRef.current) {
             loadMoreObserver = new IntersectionObserver(onLoadMoreCallback, {
                 root: containerRef.current,
-                rootMargin: "0px 200px 0px 0px",
+                rootMargin: "10% 0px",
             });
             if (target) {
                 loadMoreObserver.observe(target);
