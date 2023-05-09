@@ -1,5 +1,9 @@
 {
     "compilerOptions": {
+        "declaration": true,
+        "declarationMap": true,
+        "outDir": "./lib/typings-temp",
+        "emitDeclarationOnly": true,
         "moduleResolution": "node",
         "noImplicitAny": false,
         "jsx": "react-jsx",
@@ -11,10 +15,11 @@
         "skipLibCheck": true,
         "baseUrl": "./",
         "paths": {
-            "@/*": ["./src/*"],
+            "@/*": ["./src/*"]
         },
         "module": "ESNext",
         "target": "ESNext",
-        "lib": ["dom", "ESNext"],
+        "lib": ["dom", "ESNext"]
     },
+    "include": ["./src/**/*"]
 }

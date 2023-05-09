@@ -6,6 +6,8 @@ const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const ErrorOverlayPlugin = require("error-overlay-webpack-plugin");
 const baseConfig = require("./webpack.base.config");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 const ifaces = require("os").networkInterfaces();
 
@@ -40,6 +42,13 @@ module.exports = merge(baseConfig, {
             overlay: false,
         }),
         new ErrorOverlayPlugin(),
+        new HtmlWebpackPlugin({
+            title: "react-silky-waterfull",
+            filename: "index.html",
+            template: path.resolve(process.cwd(), "./example/public/template.html"),
+            favicon: path.resolve(process.cwd(), "./example/public/favicon.ico"),
+            inject: true,
+        }),
         new FriendlyErrorsWebpackPlugin({
             compilationSuccessInfo: {
                 messages: Object.values(ifaces).reduce(

@@ -1,11 +1,17 @@
-import { useCallback, useState, CSSProperties } from "react";
+import { useCallback, useState } from "react";
+import type { CSSProperties } from "react";
 import ReactDOM from "react-dom";
-import Waterfall, { ItemData, ItemExtraNodeProps } from "../src";
+// 本地开发调试时用的下面路径
+// import Waterfall from "../src";
+// import type { ItemData, ItemExtraNodeProps } from "../src";
+// 1、本地跑example可用软链接；2、在实际项目中使用的时候直接安装react-silky-waterfall包引入使用
+import Waterfall from "react-silky-waterfall";
+import type { ItemData, ItemExtraNodeProps } from "react-silky-waterfall";
 import { getStyleCssText, getElementSize } from "./utils";
-import request from "./request";
-import "./reset.scss";
-import "./global.scss";
-import "./index.scss";
+import request from "./utils/request";
+import "./styles/reset.scss";
+import "./styles/global.scss";
+import "./styles/index.scss";
 
 const extraStyle: CSSProperties = {
     margin: "14px 0",

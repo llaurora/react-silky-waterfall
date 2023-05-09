@@ -1,6 +1,6 @@
 import React, { memo, useState, useRef, useCallback } from "react";
 import classNames from "classnames";
-import { ItemProps, ImgBoxProps, ItemData } from "@/interface";
+import type { ItemProps, ImgBoxProps, ItemData } from "../interface";
 import "./index.scss";
 
 const ImgBox = memo(({ id, width, height, src, onImgClick }: ImgBoxProps) => {

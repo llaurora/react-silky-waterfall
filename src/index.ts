@@ -1,5 +1,4 @@
 import Waterfall from "./waterfall";
-import type { ItemData, ItemExtraNodeProps } from "./interface";
 
-export type { ItemData, ItemExtraNodeProps };
+export type { ItemData, ItemExtraNodeProps, WaterfallProps, ItemRequireData, ItemGap, IDType } from "./interface";
 export default Waterfall;

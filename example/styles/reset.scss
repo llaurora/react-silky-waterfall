@@ -1,0 +1,28 @@
+body,ul,li,dl,dt,dd,p,ol,h1,h2,h3,h4,h5,h6,form,img,table,fieldset,legend {
+    margin:0;
+    padding:0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+ul,
+li,
+ol {
+    list-style:none;
+}
+
+ul {
+    margin-block-start: auto;
+    margin-block-end: auto;
+    padding-inline-start: 0;
+}
+
+img,fieldset {
+    border:0;
+}
+
+input,a {
+    outline:none;
+}

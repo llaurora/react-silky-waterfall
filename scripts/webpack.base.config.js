@@ -1,6 +1,4 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 require("dotenv").config();
 
 const devMode = process.env.NODE_ENV === "development";
@@ -59,14 +57,7 @@ module.exports = {
                 test: /\.(sa|sc|c)ss$/,
                 include: [SRC_DIR, EXAMPLE_DIR],
                 use: [
-                    devMode
-                        ? "style-loader"
-                        : {
-                              loader: MiniCssExtractPlugin.loader,
-                              options: {
-                                  publicPath: "../",
-                              },
-                          },
+                    "style-loader",
                     {
                         loader: "css-loader",
                         options: {
@@ -86,13 +77,4 @@ module.exports = {
             },
         ],
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: "react-waterfull",
-            filename: "index.html",
-            template: path.resolve(process.cwd(), "./public/template.html"), // template path
-            favicon: path.resolve(process.cwd(), "./public/favicon.ico"),
-            inject: true,
-        }),
-    ],
 };

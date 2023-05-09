@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export type IDType = string | number;
 
@@ -33,6 +33,7 @@ export interface WaterfallProps {
     itemRadius?: number;
     overscanRatio?: number;
     loadingNode?: ReactNode;
+    extraHeight?: number;
     extraSizeGetter?: (data: ItemData, columnWidth: number) => number;
     onLoadMore?: () => void;
     onImgClick?: (data: ItemData) => void;

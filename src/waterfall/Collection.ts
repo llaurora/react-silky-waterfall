@@ -1,4 +1,4 @@
-import { IDType, Metadata, SeriesRowsMap, RequiredSeriesRowsParams } from "@/interface";
+import type { IDType, Metadata, SeriesRowsMap, RequiredSeriesRowsParams } from "../interface";
 
 export default class Collection {
     #rowHeight: number;
